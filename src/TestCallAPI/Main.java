@@ -6,6 +6,6 @@ import java.util.List;
 public class Main {
   public static void main(String[] args) throws IOException {
     List<Movie> movies = Call.makeAPICall();
-    new MovieListPrinter().print(movies);
+    MovieListPrinter.print(movies);
   }
 }

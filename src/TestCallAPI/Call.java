@@ -16,11 +16,9 @@ public class Call {
 
   private static List<Movie> movieList;
 
-  public Call() {}
-
   public static List<Movie> readMovieList(InputStream input) throws IOException {
     Movie temp;
-    List<Movie> searchResults = new ArrayList<Movie>();
+    List<Movie> searchResults = new ArrayList<>();
     ObjectMapper map = new ObjectMapper();
     JsonNode tree = map.readTree(input);
 
