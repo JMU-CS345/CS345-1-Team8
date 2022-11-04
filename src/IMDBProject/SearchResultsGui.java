@@ -17,7 +17,7 @@ import javax.swing.tree.TreeModel;
  * GUI for displaying search results.
  *
  * @author Erin Crowley
- * @author Chase
+ * @author Chase Coleman
  * @author Cal Fitzgerald
  * @author Zoe Zinn
  */

@@ -6,7 +6,7 @@ import java.util.List;
  * Class for easily printing movie information.
  *
  * @author Erin Crowley
- * @author Chase
+ * @author Chase Coleman
  * @author Cal Fitzgerald
  * @author Zoe Zinn
  */

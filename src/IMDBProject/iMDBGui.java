@@ -17,7 +17,7 @@ import javax.swing.JTextField;
  * GUI for user input and navigation.
  *
  * @author Erin Crowley
- * @author Chase
+ * @author Chase Coleman
  * @author Cal Fitzgerald
  * @author Zoe Zinn
  */

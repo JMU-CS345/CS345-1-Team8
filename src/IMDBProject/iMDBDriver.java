@@ -8,7 +8,7 @@ public class iMDBDriver {
    * @param args command line arguments
    *
    * @author Erin Crowley
-   * @author Chase
+   * @author Chase Coleman
    * @author Cal Fitzgerald
    * @author Zoe Zinn
    */

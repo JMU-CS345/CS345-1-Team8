@@ -13,7 +13,7 @@ import java.util.List;
  * Class for calling IMDB's API for the information on movies.
  *
  * @author Erin Crowley
- * @author Chase
+ * @author Chase Coleman
  * @author Cal Fitzgerald
  * @author Zoe Zinn
  */
