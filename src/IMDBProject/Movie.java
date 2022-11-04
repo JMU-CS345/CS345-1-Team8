@@ -1,5 +1,13 @@
-package TestCallAPI;
+package IMDBProject;
 
+/**
+ * Class for easily manipulating movie results.
+ *
+ * @author Erin Crowley
+ * @author Chase
+ * @author Cal Fitzgerald
+ * @author Zoe Zinn
+ */
 public class Movie {
 
   private String id;
@@ -8,6 +16,15 @@ public class Movie {
   private String title;
   private String description;
 
+  /**
+   * Movie object constructor.
+   *
+   * @param id          the id used for accessing other information
+   * @param resultType  the type of result
+   * @param image       the image URL
+   * @param title       movie title
+   * @param description brief overview of the movie
+   */
   public Movie(String id, String resultType,
                String image, String title, String description) {
     this.id = id;
