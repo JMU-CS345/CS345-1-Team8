@@ -97,29 +97,25 @@ public class iMDBGui extends JFrame {
     this.search = new JButton("Search");
 
     // Action listener for when the button is clicked
-    search.addActionListener(new ActionListener() {
+    search.addActionListener(e -> {
 
-      @Override
-      public void actionPerformed(ActionEvent e) {
+      // User input as a search request
+      String submission = entry.getText();
 
-        // User input as a search request
-        String submission = entry.getText();
+      // Case for no input
+      if (!submission.equals("")) {
+        System.out.println(submission);
 
-        // Case for no input
-        if (!submission.equals("")) {
-          System.out.println(submission);
+        try {
+          ArrayList<Movie> movies = (ArrayList<Movie>) Call.makeAPICall(submission);
+          SearchResultsGui SRGui = new SearchResultsGui(movies);
+          SRGui.setVisible(true);
 
-          try {
-            ArrayList<Movie> movies = (ArrayList<Movie>) Call.makeAPICall(submission);
-            SearchResultsGui SRGui = new SearchResultsGui(movies);
-            SRGui.setVisible(true);
-
-          } catch (IOException ex) {
-            throw new RuntimeException(ex);
-          }
-          // get array of results back from Erin's code
-          // display array of stuff to new window
+        } catch (IOException ex) {
+          throw new RuntimeException(ex);
         }
+        // get array of results back from Erin's code
+        // display array of stuff to new window
       }
     });
   }
