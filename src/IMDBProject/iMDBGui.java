@@ -38,6 +38,7 @@ public class iMDBGui extends JFrame {
     buildGui();
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.pack();
+    main.getRootPane().setDefaultButton(search);
   }
 
   /**
