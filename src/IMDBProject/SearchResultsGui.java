@@ -2,6 +2,7 @@ package IMDBProject;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -45,7 +46,6 @@ public class SearchResultsGui extends JFrame {
    * Helper method for building the GUI.
    */
   private void buildGui() {
-    buildTree();
     getContentPane().add(getDisplayPanel());
   }
 
@@ -77,7 +77,7 @@ public class SearchResultsGui extends JFrame {
     DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
     for (Movie movie : movies) {
       String title = movie.getTitle();
-      rootNode.add(new DefaultMutableTreeNode(title));
+      rootNode.add(new DefaultMutableTreeNode(movie));
     }
     TreeModel model = new DefaultTreeModel(rootNode);
     tree.setModel(model);
@@ -99,6 +99,11 @@ public class SearchResultsGui extends JFrame {
         if (selectedNode instanceof DefaultMutableTreeNode) {
           DefaultMutableTreeNode node = (DefaultMutableTreeNode) selectedNode;
           Object selectedObject = node.getUserObject();
+          if (selectedObject instanceof Movie) {
+            Movie movie = (Movie) selectedObject;
+            System.out.println(movie.getDescription());
+            new MovieGui((Movie) selectedObject);
+          }
         }
       }
     });

@@ -70,6 +70,11 @@ public class Movie {
     return description;
   }
 
+  @Override
+  public String toString() {
+    return title;
+  }
+
   public void setDescription(String description) {
     this.description = description;
   }
