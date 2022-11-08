@@ -38,6 +38,7 @@ public class iMDBGui extends JFrame {
     buildGui();
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.pack();
+    main.getRootPane().setDefaultButton(search);
   }
 
   /**
@@ -54,7 +55,7 @@ public class iMDBGui extends JFrame {
    */
   private Component getDisplayPanel() {
     this.displayPanel = new JPanel();
-    displayPanel.setPreferredSize(new Dimension(400, 80));
+    displayPanel.setPreferredSize(new Dimension(450, 70));
     buildContents();
     return displayPanel;
   }
@@ -67,13 +68,13 @@ public class iMDBGui extends JFrame {
     // Title creation
     JPanel titlePanel = new JPanel();
     JLabel title = new JLabel("Enter a Movie Title: ");
-    title.setFont(new Font("Comic-Sans", Font.PLAIN, 20));
+    title.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
     titlePanel.add(title);
 
     // User input panel creation
     JPanel inputPanel = new JPanel();
     this.entry = new JTextField();
-    entry.setPreferredSize(new Dimension(70, 30));
+    entry.setPreferredSize(new Dimension(100, 25));
     inputPanel.add(entry);
 
     // Search button creation
@@ -95,6 +96,7 @@ public class iMDBGui extends JFrame {
    */
   private void createSearchButton() {
     this.search = new JButton("Search");
+    search.setFont(new Font("Comic Sans MS", Font.ITALIC, 12));
 
     // Action listener for when the button is clicked
     search.addActionListener(e -> {

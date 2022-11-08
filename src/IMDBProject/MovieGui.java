@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.net.URL;
 
+/**
+ * GUI specifically for displaying the chosen movie information like pictures, actors, ect.
+ */
 public class MovieGui extends JFrame {
 
   private Movie movie;
@@ -44,13 +47,11 @@ public class MovieGui extends JFrame {
       URL icon = new URL(movie.getImage());
       ImageIcon image = new ImageIcon(icon);
       System.out.println(image.getIconHeight());
-      if (image.getIconHeight() > 1000) {
-        ImageIcon scaled = new ImageIcon(image.getImage().getScaledInstance(image.getIconWidth() / 2,
+      while (image.getIconHeight() > 1000) {
+        image = new ImageIcon(image.getImage().getScaledInstance(image.getIconWidth() / 2,
                 image.getIconHeight() / 2, Image.SCALE_DEFAULT));
-        displayPanel.add(new JLabel(scaled), BorderLayout.WEST);
-      } else {
-        displayPanel.add(new JLabel(image), BorderLayout.WEST);
       }
+      displayPanel.add(new JLabel(image), BorderLayout.WEST);
     } catch (Exception e) {
       System.out.println("Problem with image of movie");
     }
