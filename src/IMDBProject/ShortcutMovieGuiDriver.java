@@ -1,7 +1,6 @@
 package IMDBProject;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 /**
  * So you don't have to search movie from beginning with api.
@@ -16,4 +15,5 @@ public class ShortcutMovieGuiDriver {
     // shortcutting the gui after you click on the movie from selection tree
     new MovieGui(movie);
   }
+
 }
