@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,13 @@ import java.util.List;
  * @author Zoe Zinn
  */
 public class Call {
+
+  public static void main(String[] args) throws IOException {
+    ArrayList<Movie> movies = (ArrayList<Movie>) Call.makeAPICall("project x");
+    System.out.println(movies.get(0).getImage());
+    System.out.println(Call.getDescription(movies.get(0).getId()));
+  }
+
 
   /**
    * Calls the API to get results and info.
@@ -87,8 +95,8 @@ public class Call {
     return searchResults;
   }
 
-  public static ArrayList<String> getActors(Movie movie) throws IOException{
-    URL url = new URL("https://imdb-api.com/en/API/FullCast/k_mcx0w8kk/" + movie.getId());
+  public static ArrayList<String> getActors(String id) throws IOException{
+    URL url = new URL("https://imdb-api.com/en/API/FullCast/k_mcx0w8kk/" + id);
     // Get URL connection
     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
     conn.setRequestMethod("GET");
@@ -116,6 +124,32 @@ public class Call {
       actors.add(name);
     }
     return actors;
+  }
+
+  public static String getDescription(String id) throws IOException {
+    URL url = new URL("https://imdb-api.com/en/API/Wikipedia/k_mcx0w8kk/" + id);
+    // Get URL connection
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+    conn.connect();
+
+    //Check if connected successfully
+    int responseCode = conn.getResponseCode();
+
+    //Code 200 OK, anything else throw exception
+    if (responseCode != 200) {
+      throw new RuntimeException("HttpResponseCode: " + responseCode);
+    }
+
+    // Read the contents of the new URL
+    InputStream input = url.openStream();
+
+    // Create JTree
+    ObjectMapper map = new ObjectMapper();
+    JsonNode tree = map.readTree(input);
+    String rough = tree.get("plotShort").toString();
+    String polished = rough.substring(14, rough.indexOf("\\r"));
+    return "<HTML>" + polished + "</HTML>";
   }
 
 }
