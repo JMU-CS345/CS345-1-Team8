@@ -87,4 +87,35 @@ public class Call {
     return searchResults;
   }
 
+  public static ArrayList<String> getActors(Movie movie) throws IOException{
+    URL url = new URL("https://imdb-api.com/en/API/FullCast/k_mcx0w8kk/" + movie.getId());
+    // Get URL connection
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+    conn.connect();
+
+    //Check if connected successfully
+    int responseCode = conn.getResponseCode();
+
+    //Code 200 OK, anything else throw exception
+    if (responseCode != 200) {
+      throw new RuntimeException("HttpResponseCode: " + responseCode);
+    }
+
+    // Read the contents of the new URL
+    InputStream input = url.openStream();
+
+    // Create JTree
+    ObjectMapper map = new ObjectMapper();
+    JsonNode tree = map.readTree(input);
+    JsonNode results = tree.get("actors");
+    ArrayList<String> actors = new ArrayList<>();
+    for (JsonNode result : results) {
+      String all = result.toString();
+      String name = all.substring(all.indexOf("name") + 7, all.indexOf("asCharacter") - 3);
+      actors.add(name);
+    }
+    return actors;
+  }
+
 }
