@@ -47,6 +47,11 @@ public class MovieGui extends JFrame {
     return displayPanel;
   }
 
+  /**
+   * Builds our contents within the display panel.
+   *
+   * @throws IOException if the url messes up from nested methods
+   */
   private void buildContents() throws IOException {
     // image added to display panel by itself
     try {
