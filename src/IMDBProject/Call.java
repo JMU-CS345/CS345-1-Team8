@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +94,13 @@ public class Call {
     return searchResults;
   }
 
+  /**
+   * Gets all the actors from the movie.
+   *
+   * @param id of the movie for api call
+   * @return Arraylist of actor names
+   * @throws IOException if the url messes up
+   */
   public static ArrayList<String> getActors(String id) throws IOException{
     URL url = new URL("https://imdb-api.com/en/API/FullCast/k_mcx0w8kk/" + id);
     // Get URL connection
@@ -126,6 +132,13 @@ public class Call {
     return actors;
   }
 
+  /**
+   * Gets short description of movie from wiki api call.
+   *
+   * @param id of the movie
+   * @return the descrption as an html tag so it wraps
+   * @throws IOException if the url messes up
+   */
   public static String getDescription(String id) throws IOException {
     URL url = new URL("https://imdb-api.com/en/API/Wikipedia/k_mcx0w8kk/" + id);
     // Get URL connection
