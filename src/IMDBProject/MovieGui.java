@@ -4,11 +4,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.*;
 import java.net.URL;
 
+/**
+ * GUI specifically for displaying the chosen movie information like pictures, actors, ect.
+ */
 public class MovieGui extends JFrame {
 
   private Movie movie;
@@ -44,7 +45,13 @@ public class MovieGui extends JFrame {
     // image added to display panel by itself
     try {
       URL icon = new URL(movie.getImage());
-      displayPanel.add(new JLabel(new ImageIcon(icon)), BorderLayout.WEST);
+      ImageIcon image = new ImageIcon(icon);
+      System.out.println(image.getIconHeight());
+      while (image.getIconHeight() > 1000) {
+        image = new ImageIcon(image.getImage().getScaledInstance(image.getIconWidth() / 2,
+                image.getIconHeight() / 2, Image.SCALE_DEFAULT));
+      }
+      displayPanel.add(new JLabel(image), BorderLayout.WEST);
     } catch (Exception e) {
       System.out.println("Problem with image of movie");
     }
