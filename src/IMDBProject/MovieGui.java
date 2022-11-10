@@ -56,10 +56,16 @@ public class MovieGui extends JFrame {
       System.out.println("Problem with image of movie");
     }
 
-    // description stuff is in its own panel inside main displayPanel
+    // description is in its own panel inside main displayPanel
     JPanel descPanel = new JPanel(new BorderLayout());
-    descPanel.add(new JLabel(movie.getTitle()), BorderLayout.CENTER);
-    descPanel.add(new JLabel(movie.getDescription()), BorderLayout.SOUTH);
+
+    JLabel movieLabel = new JLabel(movie.getTitle());
+    movieLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    JLabel descLabel = new JLabel(movie.getDescription());
+    descLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+
+    descPanel.add(movieLabel, BorderLayout.CENTER);
+    descPanel.add(descLabel, BorderLayout.SOUTH);
     displayPanel.add(descPanel, BorderLayout.EAST);
   }
 

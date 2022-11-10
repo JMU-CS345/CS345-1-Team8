@@ -1,7 +1,6 @@
 package IMDBProject;
 
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.*;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -82,6 +81,7 @@ public class SearchResultsGui extends JFrame {
     TreeModel model = new DefaultTreeModel(rootNode);
     tree.setModel(model);
     tree.setRootVisible(false);
+    tree.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
   }
 
   /**
