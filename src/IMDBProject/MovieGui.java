@@ -9,10 +9,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Image;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -68,14 +65,23 @@ public class MovieGui extends JFrame {
     // description stuff is in its own panel inside main displayPanel
     JPanel descPanel = new JPanel(new BorderLayout());
     displayPanel.add(descPanel, BorderLayout.EAST);
-    descPanel.add(new JLabel(movie.getTitle()), BorderLayout.NORTH);
-    descPanel.add(new JScrollPane(getTreeView()), BorderLayout.CENTER);
-    displayPanel.add(new JLabel(Call.getDescription(movie.getId())), BorderLayout.SOUTH);
+
+    JLabel movieLabel = new JLabel(movie.getTitle());
+    movieLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    JLabel descLabel = new JLabel(movie.getDescription());
+    descLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    JLabel longDescLabel = new JLabel(Call.getDescription(movie.getId()));
+    longDescLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+
+    descPanel.add(movieLabel, BorderLayout.PAGE_START);
+    descPanel.add(descLabel, BorderLayout.SOUTH);
+    displayPanel.add(longDescLabel, BorderLayout.SOUTH);
   }
 
   private Component getTreeView() {
     JTree tree = new JTree();
     tree = new JTree();
+    tree.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
     DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
     for (String actor : actors) {
       rootNode.add(new DefaultMutableTreeNode(actor));
