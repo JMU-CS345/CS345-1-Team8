@@ -19,6 +19,13 @@ import java.util.List;
  */
 public class Call {
 
+  public static void main(String[] args) throws IOException {
+    ArrayList<Movie> movies = (ArrayList<Movie>) Call.makeAPICall("project x");
+    System.out.println(movies.get(0).getImage());
+    System.out.println(Call.getDescription(movies.get(0).getId()));
+  }
+
+
   /**
    * Calls the API to get results and info.
    *
@@ -85,6 +92,77 @@ public class Call {
 
     input.close();
     return searchResults;
+  }
+
+  /**
+   * Gets all the actors from the movie.
+   *
+   * @param id of the movie for api call
+   * @return Arraylist of actor names
+   * @throws IOException if the url messes up
+   */
+  public static ArrayList<String> getActors(String id) throws IOException{
+    URL url = new URL("https://imdb-api.com/en/API/FullCast/k_mcx0w8kk/" + id);
+    // Get URL connection
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+    conn.connect();
+
+    //Check if connected successfully
+    int responseCode = conn.getResponseCode();
+
+    //Code 200 OK, anything else throw exception
+    if (responseCode != 200) {
+      throw new RuntimeException("HttpResponseCode: " + responseCode);
+    }
+
+    // Read the contents of the new URL
+    InputStream input = url.openStream();
+
+    // Create JTree
+    ObjectMapper map = new ObjectMapper();
+    JsonNode tree = map.readTree(input);
+    JsonNode results = tree.get("actors");
+    ArrayList<String> actors = new ArrayList<>();
+    for (JsonNode result : results) {
+      String all = result.toString();
+      String name = all.substring(all.indexOf("name") + 7, all.indexOf("asCharacter") - 3);
+      actors.add(name);
+    }
+    return actors;
+  }
+
+  /**
+   * Gets short description of movie from wiki api call.
+   *
+   * @param id of the movie
+   * @return the descrption as an html tag so it wraps
+   * @throws IOException if the url messes up
+   */
+  public static String getDescription(String id) throws IOException {
+    URL url = new URL("https://imdb-api.com/en/API/Wikipedia/k_mcx0w8kk/" + id);
+    // Get URL connection
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+    conn.connect();
+
+    //Check if connected successfully
+    int responseCode = conn.getResponseCode();
+
+    //Code 200 OK, anything else throw exception
+    if (responseCode != 200) {
+      throw new RuntimeException("HttpResponseCode: " + responseCode);
+    }
+
+    // Read the contents of the new URL
+    InputStream input = url.openStream();
+
+    // Create JTree
+    ObjectMapper map = new ObjectMapper();
+    JsonNode tree = map.readTree(input);
+    String rough = tree.get("plotShort").toString();
+    String polished = rough.substring(14, rough.indexOf("\\r"));
+    return "<HTML>" + polished + "</HTML>";
   }
 
 }

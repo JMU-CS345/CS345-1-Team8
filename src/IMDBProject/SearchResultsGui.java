@@ -1,6 +1,8 @@
 package IMDBProject;
 
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -81,7 +83,6 @@ public class SearchResultsGui extends JFrame {
     TreeModel model = new DefaultTreeModel(rootNode);
     tree.setModel(model);
     tree.setRootVisible(false);
-    tree.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
   }
 
   /**
@@ -101,8 +102,11 @@ public class SearchResultsGui extends JFrame {
           Object selectedObject = node.getUserObject();
           if (selectedObject instanceof Movie) {
             Movie movie = (Movie) selectedObject;
-            System.out.println(movie.getDescription());
-            new MovieGui((Movie) selectedObject);
+            try {
+              new MovieGui((Movie) selectedObject);
+            } catch (IOException ex) {
+              throw new RuntimeException(ex);
+            }
           }
         }
       }
