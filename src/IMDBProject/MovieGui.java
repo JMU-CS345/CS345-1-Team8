@@ -6,12 +6,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -61,16 +64,23 @@ public class MovieGui extends JFrame {
         image = new ImageIcon(image.getImage().getScaledInstance(image.getIconWidth() / 2,
             image.getIconHeight() / 2, Image.SCALE_DEFAULT));
       }
-      displayPanel.add(new JLabel(image), BorderLayout.WEST);
+      displayPanel.add(new JLabel(image), BorderLayout.CENTER);
     } catch (Exception e) {
       System.out.println("Problem with image of movie");
     }
     // description stuff is in its own panel inside main displayPanel
     JPanel descPanel = new JPanel(new BorderLayout());
     displayPanel.add(descPanel, BorderLayout.EAST);
-    descPanel.add(new JLabel(movie.getTitle()), BorderLayout.NORTH);
+
+    JLabel title = new JLabel(movie.getTitle());
+    title.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
+    descPanel.add(title, BorderLayout.NORTH);
+
     descPanel.add(new JScrollPane(getTreeView()), BorderLayout.CENTER);
-    displayPanel.add(new JLabel(Call.getDescription(movie.getId())), BorderLayout.SOUTH);
+
+    JLabel description = new JLabel(Call.getDescription(movie.getId()));
+    description.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+    displayPanel.add(description, BorderLayout.SOUTH);
   }
 
   private Component getTreeView() {
@@ -82,6 +92,7 @@ public class MovieGui extends JFrame {
     }
     TreeModel model = new DefaultTreeModel(rootNode);
     tree.setModel(model);
+    tree.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
     tree.setRootVisible(false);
 
     JScrollPane treeView = new JScrollPane(tree);
