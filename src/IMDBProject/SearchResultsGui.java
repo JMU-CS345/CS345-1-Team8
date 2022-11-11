@@ -1,17 +1,15 @@
 package IMDBProject;
 
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
+import java.util.Objects;
+import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 
@@ -82,6 +80,7 @@ public class SearchResultsGui extends JFrame {
     }
     TreeModel model = new DefaultTreeModel(rootNode);
     tree.setModel(model);
+    tree.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
     tree.setRootVisible(false);
   }
 
@@ -91,6 +90,19 @@ public class SearchResultsGui extends JFrame {
    * @return a scrollable Jtree to the panel
    */
   private Component getTreeView() {
+
+    // Change tree icon
+    DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
+    Icon closedIcon = new ImageIcon(Objects.requireNonNull(
+            this.getClass().getResource("/Images/movie_icon.jpg")));
+    Icon openIcon = new ImageIcon(Objects.requireNonNull(
+            this.getClass().getResource("/Images/movie_icon.jpg")));
+    Icon leafIcon = new ImageIcon(Objects.requireNonNull(
+            this.getClass().getResource("/Images/movie_icon.jpg")));
+    renderer.setClosedIcon(closedIcon);
+    renderer.setOpenIcon(openIcon);
+    renderer.setLeafIcon(leafIcon);
+
     treeView = new JScrollPane(tree);
 
     tree.addTreeSelectionListener(new TreeSelectionListener() {
