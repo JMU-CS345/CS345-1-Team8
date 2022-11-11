@@ -53,7 +53,7 @@ public class MovieGui extends JFrame {
     try {
       URL icon = new URL(movie.getImage());
       ImageIcon image = new ImageIcon(icon);
-      while (image.getIconHeight() > 1000) {
+      while (image.getIconHeight() > 800 || image.getIconWidth() > 800) {
         image = new ImageIcon(image.getImage().getScaledInstance(image.getIconWidth() / 2,
             image.getIconHeight() / 2, Image.SCALE_DEFAULT));
       }

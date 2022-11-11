@@ -26,7 +26,7 @@ public class ActorGui extends JFrame {
     this.name = name;
     buildGui();
     this.setVisible(true);
-    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     this.pack();
   }
 
@@ -44,7 +44,7 @@ public class ActorGui extends JFrame {
    */
   private Component getDisplayPanel() {
     this.displayPanel = new JPanel();
-    displayPanel.setPreferredSize(new Dimension(400, 500));
+    displayPanel.setPreferredSize(new Dimension(800, 800));
 
     // image added to display panel by itself
     try {

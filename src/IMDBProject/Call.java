@@ -169,6 +169,7 @@ public class Call {
 
 
   public static String getActorImage(String name) throws IOException {
+    System.out.println(name);
     URL url = new URL("https://imdb-api.com/en/API/SearchName/k_mcx0w8kk/" + name);
     // Get URL connection
     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -189,10 +190,7 @@ public class Call {
     // Create JTree
     ObjectMapper map = new ObjectMapper();
     JsonNode tree = map.readTree(input);
-    System.out.println(tree);
     String link = tree.get("results").get(0).get("image").toString();
-    System.out.println(link);
-    System.out.println(link.substring(1, link.length() - 1));
     return link.substring(1, link.length() - 1);
   }
 

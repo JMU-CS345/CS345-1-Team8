@@ -37,7 +37,7 @@ public class SearchResultsGui extends JFrame {
     this.main = this;
     this.movies = movies;
     buildGui();
-    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     this.pack();
   }
 
@@ -75,7 +75,6 @@ public class SearchResultsGui extends JFrame {
     tree = new JTree();
     DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
     for (Movie movie : movies) {
-      String title = movie.getTitle();
       rootNode.add(new DefaultMutableTreeNode(movie));
     }
     TreeModel model = new DefaultTreeModel(rootNode);
