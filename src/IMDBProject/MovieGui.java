@@ -1,18 +1,15 @@
 package IMDBProject;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
+import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MovieGui extends JFrame {
 
@@ -64,17 +61,25 @@ public class MovieGui extends JFrame {
     }
     // description stuff is in its own panel inside main displayPanel
     JPanel descPanel = new JPanel(new BorderLayout());
-    displayPanel.add(descPanel, BorderLayout.EAST);
+    displayPanel.add(descPanel, BorderLayout.CENTER);
 
     JLabel movieLabel = new JLabel(movie.getTitle());
     movieLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    movieLabel.setMaximumSize(new Dimension(100, 100));
+
     JLabel descLabel = new JLabel(movie.getDescription());
     descLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    descLabel.setMaximumSize(new Dimension(100, 100));
+
     JLabel longDescLabel = new JLabel(Call.getDescription(movie.getId()));
     longDescLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 
-    descPanel.add(movieLabel, BorderLayout.PAGE_START);
-    descPanel.add(descLabel, BorderLayout.SOUTH);
+    descPanel.add(movieLabel, BorderLayout.WEST);
+    descPanel.add(descLabel, BorderLayout.CENTER);
+
+    // Actor tree
+    descPanel.add(new JScrollPane(getTreeView()), BorderLayout.EAST);
+
     displayPanel.add(longDescLabel, BorderLayout.SOUTH);
   }
 
@@ -89,6 +94,18 @@ public class MovieGui extends JFrame {
     TreeModel model = new DefaultTreeModel(rootNode);
     tree.setModel(model);
     tree.setRootVisible(false);
+
+    // Change icon
+    DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
+    Icon closedIcon = new ImageIcon(Objects.requireNonNull(
+            this.getClass().getResource("/Images/actor_icon.png")));
+    Icon openIcon = new ImageIcon(Objects.requireNonNull(
+            this.getClass().getResource("/Images/actor_icon.png")));
+    Icon leafIcon = new ImageIcon(Objects.requireNonNull(
+            this.getClass().getResource("/Images/actor_icon.png")));
+    renderer.setClosedIcon(closedIcon);
+    renderer.setOpenIcon(openIcon);
+    renderer.setLeafIcon(leafIcon);
 
     JScrollPane treeView = new JScrollPane(tree);
     return treeView;
