@@ -1,21 +1,17 @@
 package IMDBProject;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
+import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Image;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MovieGui extends JFrame {
 
@@ -57,7 +53,7 @@ public class MovieGui extends JFrame {
     try {
       URL icon = new URL(movie.getImage());
       ImageIcon image = new ImageIcon(icon);
-      while (image.getIconHeight() > 1000) {
+      while (image.getIconHeight() > 800 || image.getIconWidth() > 800) {
         image = new ImageIcon(image.getImage().getScaledInstance(image.getIconWidth() / 2,
             image.getIconHeight() / 2, Image.SCALE_DEFAULT));
       }
@@ -67,15 +63,31 @@ public class MovieGui extends JFrame {
     }
     // description stuff is in its own panel inside main displayPanel
     JPanel descPanel = new JPanel(new BorderLayout());
-    displayPanel.add(descPanel, BorderLayout.EAST);
-    descPanel.add(new JLabel(movie.getTitle()), BorderLayout.NORTH);
-    descPanel.add(new JScrollPane(getTreeView()), BorderLayout.CENTER);
-    displayPanel.add(new JLabel(Call.getDescription(movie.getId())), BorderLayout.SOUTH);
+    displayPanel.add(descPanel, BorderLayout.CENTER);
+
+    JLabel movieLabel = new JLabel(movie.getTitle());
+    movieLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
+    movieLabel.setMaximumSize(new Dimension(100, 100));
+
+    JLabel descLabel = new JLabel(movie.getDescription());
+    descLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    descLabel.setMaximumSize(new Dimension(100, 100));
+
+    JLabel longDescLabel = new JLabel(Call.getDescription(movie.getId()));
+    longDescLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+
+    descPanel.add(movieLabel, BorderLayout.NORTH);
+
+    // Actor tree
+    descPanel.add(new JScrollPane(getTreeView()), BorderLayout.EAST);
+
+    displayPanel.add(longDescLabel, BorderLayout.SOUTH);
   }
 
   private Component getTreeView() {
     JTree tree = new JTree();
     tree = new JTree();
+    tree.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
     DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
     for (String actor : actors) {
       rootNode.add(new DefaultMutableTreeNode(actor));
@@ -83,6 +95,33 @@ public class MovieGui extends JFrame {
     TreeModel model = new DefaultTreeModel(rootNode);
     tree.setModel(model);
     tree.setRootVisible(false);
+
+    // Change icon
+    DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
+    Icon closedIcon = new ImageIcon(Objects.requireNonNull(
+        this.getClass().getResource("/Images/actor_icon.png")));
+    Icon openIcon = new ImageIcon(Objects.requireNonNull(
+        this.getClass().getResource("/Images/actor_icon.png")));
+    Icon leafIcon = new ImageIcon(Objects.requireNonNull(
+        this.getClass().getResource("/Images/actor_icon.png")));
+    renderer.setClosedIcon(closedIcon);
+    renderer.setOpenIcon(openIcon);
+    renderer.setLeafIcon(leafIcon);
+
+    tree.addTreeSelectionListener(new TreeSelectionListener() {
+      @Override
+      public void valueChanged(TreeSelectionEvent e) {
+        Object selectedNode = e.getPath().getLastPathComponent();
+        if (selectedNode instanceof DefaultMutableTreeNode) {
+          DefaultMutableTreeNode node = (DefaultMutableTreeNode) selectedNode;
+          Object selectedObject = node.getUserObject();
+          if (selectedObject instanceof String) {
+              new ActorGui((String) selectedObject);
+          }
+        }
+      }
+    });
+
 
     JScrollPane treeView = new JScrollPane(tree);
     return treeView;
