@@ -1,5 +1,7 @@
 package IMDBProject;
 
+import javax.swing.JLabel;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
@@ -163,6 +165,35 @@ public class Call {
     String rough = tree.get("plotShort").toString();
     String polished = rough.substring(14, rough.indexOf("\\r"));
     return "<HTML>" + polished + "</HTML>";
+  }
+
+
+  public static String getActorImage(String name) throws IOException {
+    URL url = new URL("https://imdb-api.com/en/API/SearchName/k_mcx0w8kk/" + name);
+    // Get URL connection
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+    conn.connect();
+
+    //Check if connected successfully
+    int responseCode = conn.getResponseCode();
+
+    //Code 200 OK, anything else throw exception
+    if (responseCode != 200) {
+      throw new RuntimeException("HttpResponseCode: " + responseCode);
+    }
+
+    // Read the contents of the new URL
+    InputStream input = url.openStream();
+
+    // Create JTree
+    ObjectMapper map = new ObjectMapper();
+    JsonNode tree = map.readTree(input);
+    System.out.println(tree);
+    String link = tree.get("results").get(0).get("image").toString();
+    System.out.println(link);
+    System.out.println(link.substring(1, link.length() - 1));
+    return link.substring(1, link.length() - 1);
   }
 
 }

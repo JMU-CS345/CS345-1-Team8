@@ -1,6 +1,8 @@
 package IMDBProject;
 
 import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
@@ -64,7 +66,7 @@ public class MovieGui extends JFrame {
     displayPanel.add(descPanel, BorderLayout.CENTER);
 
     JLabel movieLabel = new JLabel(movie.getTitle());
-    movieLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    movieLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
     movieLabel.setMaximumSize(new Dimension(100, 100));
 
     JLabel descLabel = new JLabel(movie.getDescription());
@@ -74,8 +76,7 @@ public class MovieGui extends JFrame {
     JLabel longDescLabel = new JLabel(Call.getDescription(movie.getId()));
     longDescLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 
-    descPanel.add(movieLabel, BorderLayout.WEST);
-    descPanel.add(descLabel, BorderLayout.CENTER);
+    descPanel.add(movieLabel, BorderLayout.NORTH);
 
     // Actor tree
     descPanel.add(new JScrollPane(getTreeView()), BorderLayout.EAST);
@@ -98,14 +99,29 @@ public class MovieGui extends JFrame {
     // Change icon
     DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
     Icon closedIcon = new ImageIcon(Objects.requireNonNull(
-            this.getClass().getResource("/Images/actor_icon.png")));
+        this.getClass().getResource("/Images/actor_icon.png")));
     Icon openIcon = new ImageIcon(Objects.requireNonNull(
-            this.getClass().getResource("/Images/actor_icon.png")));
+        this.getClass().getResource("/Images/actor_icon.png")));
     Icon leafIcon = new ImageIcon(Objects.requireNonNull(
-            this.getClass().getResource("/Images/actor_icon.png")));
+        this.getClass().getResource("/Images/actor_icon.png")));
     renderer.setClosedIcon(closedIcon);
     renderer.setOpenIcon(openIcon);
     renderer.setLeafIcon(leafIcon);
+
+    tree.addTreeSelectionListener(new TreeSelectionListener() {
+      @Override
+      public void valueChanged(TreeSelectionEvent e) {
+        Object selectedNode = e.getPath().getLastPathComponent();
+        if (selectedNode instanceof DefaultMutableTreeNode) {
+          DefaultMutableTreeNode node = (DefaultMutableTreeNode) selectedNode;
+          Object selectedObject = node.getUserObject();
+          if (selectedObject instanceof String) {
+              new ActorGui((String) selectedObject);
+          }
+        }
+      }
+    });
+
 
     JScrollPane treeView = new JScrollPane(tree);
     return treeView;
