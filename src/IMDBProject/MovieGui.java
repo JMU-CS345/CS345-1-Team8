@@ -86,7 +86,6 @@ public class MovieGui extends JFrame {
 
   private Component getTreeView() {
     JTree tree = new JTree();
-    tree = new JTree();
     tree.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
     DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
     for (String actor : actors) {
