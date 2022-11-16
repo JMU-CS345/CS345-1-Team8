@@ -122,8 +122,7 @@ public class MovieGui extends JFrame {
     });
 
 
-    JScrollPane treeView = new JScrollPane(tree);
-    return treeView;
+    return new JScrollPane(tree);
   }
 
 
