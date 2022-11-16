@@ -19,7 +19,6 @@ public class iMDBGui extends JFrame {
   private JPanel displayPanel;
   private JTextField entry;
   private JButton search;
-  private SearchResultsGui SRGui;
 
   /**
    * Constructor for main.
