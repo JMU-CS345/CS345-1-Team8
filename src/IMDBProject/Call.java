@@ -137,7 +137,7 @@ public class Call {
    * Gets short description of movie from wiki api call.
    *
    * @param id of the movie
-   * @return the descrption as a html tag so it wraps
+   * @return the description as a html tag so it wraps
    * @throws IOException if the url messes up
    */
   public static String getDescription(String id) throws IOException {
