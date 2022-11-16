@@ -40,7 +40,7 @@ public class iMDBTest {
   }
 
   @Test
-  void testGuiIsVisible() throws IOException {
+  void testGuiIsVisible() {
 
     iMDBGui testGui = new iMDBGui();
     testGui.setVisible(true);
