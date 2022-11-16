@@ -1,5 +1,10 @@
 package IMDBProject;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Objects;
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
@@ -7,11 +12,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
-import java.awt.*;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class MovieGui extends JFrame {
 

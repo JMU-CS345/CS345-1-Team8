@@ -2,7 +2,6 @@ package IMDBProject;
 
 import java.awt.*;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.swing.*;
@@ -12,6 +11,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
+
 
 /**
  * GUI for displaying search results.
