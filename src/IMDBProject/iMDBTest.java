@@ -81,6 +81,14 @@ public class iMDBTest {
 
   }
 
+  @Test
+  void testIMDBDriver() throws IOException {
+    iMDBDriver driver = new iMDBDriver();
+    String[] args = new String[1];
+    args[0] = "Test";
+
+    iMDBDriver.main(args);
+  }
 
 
 
