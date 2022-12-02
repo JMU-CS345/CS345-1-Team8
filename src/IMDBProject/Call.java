@@ -2,7 +2,6 @@ package IMDBProject;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -162,11 +161,27 @@ public class Call {
     ObjectMapper map = new ObjectMapper();
     JsonNode tree = map.readTree(input);
     String rough = tree.get("plotShort").toString();
-    String polished = rough.substring(14, rough.indexOf("\\r"));
+    System.out.println(rough);
+    int rightBound = -1;
+    if (rough.contains("\",\"")) {
+        rightBound = rough.indexOf("\",\"");
+    }
+    if (rough.contains("\\r\\n")) {
+      rightBound = rough.indexOf("\\r\\n");
+    }
+    if (rightBound < 14) {
+      rightBound = rough.length();
+    }
+    String polished = rough.substring(14, rightBound);
     return "<HTML>" + polished + "</HTML>";
   }
 
-
+  /**
+   * Gets a cute pic of the actor/actress
+   * @param name of the star
+   * @return a string link to the image
+   * @throws IOException if something goes wrong for the api
+   */
   public static String getActorImage(String name) throws IOException {
     System.out.println(name);
     URL url = new URL("https://imdb-api.com/en/API/SearchName/k_mcx0w8kk/" + name);
@@ -193,4 +208,45 @@ public class Call {
     return link.substring(1, link.length() - 1);
   }
 
+  /**
+   * Gets movies that actor is in
+   * @param name of actor
+   * @return movies the actor is in
+   * @throws IOException if there is a problem searching using the api
+   */
+  public static ArrayList<String> getMovies(String name) throws IOException {
+    URL url = new URL("https://imdb-api.com/en/API/SearchName/k_mcx0w8kk/" + name);
+    // Get URL connection
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+    conn.connect();
+
+    //Check if connected successfully
+    int responseCode = conn.getResponseCode();
+
+    //Code 200 OK, anything else throw exception
+    if (responseCode != 200) {
+      throw new RuntimeException("HttpResponseCode: " + responseCode);
+    }
+
+    // Read the contents of the new URL
+    InputStream input = url.openStream();
+
+    ArrayList<String> result = new ArrayList<>();
+    // Create JTree
+    ObjectMapper map = new ObjectMapper();
+    JsonNode tree = map.readTree(input);
+    JsonNode nodes = tree.get("results");
+    ArrayList<Movie> movies = new ArrayList<>();
+    for (JsonNode node : nodes) {
+
+      String actorName = node.get("title").toString();
+      actorName = actorName.substring(1, actorName.length() - 1);
+      if (name.equals(actorName)) {
+        String desc = node.get("description").toString();
+        result.add(desc.substring(desc.indexOf(", ") + 1, desc.indexOf("(") - 1));
+      }
+    }
+    return result;
+  }
 }
