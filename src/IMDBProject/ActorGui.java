@@ -30,6 +30,7 @@ public class ActorGui extends JFrame {
   private JPanel displayPanel;
   private String name;
 
+
   /**
    * GUI constructor.
    *

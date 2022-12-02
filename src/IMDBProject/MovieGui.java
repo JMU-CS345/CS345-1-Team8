@@ -15,6 +15,7 @@ import javax.swing.tree.TreeModel;
 
 public class MovieGui extends JFrame {
 
+
   private Movie movie;
   private ArrayList<String> actors;
   private JPanel displayPanel;
