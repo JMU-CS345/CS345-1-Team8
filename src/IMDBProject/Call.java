@@ -59,6 +59,28 @@ public class Call {
     return readMovieList(input);
   }
 
+  public static List<Movie> generateRandom() throws IOException {
+
+    URL url = new URL("https://imdb-api.com/en/API/Top250Movies/k_mcx0w8kk");
+
+    // Get URL connection
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+    conn.connect();
+
+    //Check if connected successfully
+    int responseCode = conn.getResponseCode();
+
+    //Code 200 OK, anything else throw exception
+    if (responseCode != 200) {
+      throw new RuntimeException("HttpResponseCode: " + responseCode);
+    }
+
+    // Read the contents of the new URL
+    InputStream input = url.openStream();
+    return readRandomList(input);
+  }
+
   /**
    * Creates a JTree movie list from the API JSON file of the users search input.
    *
@@ -89,6 +111,36 @@ public class Call {
       // Add to movie object array
       temp = new Movie(id, resultType, image, title, description);
       searchResults.add(temp);
+
+    }
+
+    input.close();
+    return searchResults;
+  }
+
+  public static List<Movie> readRandomList(InputStream input) throws IOException {
+
+    // Set-up:
+    Movie temp;
+    List<Movie> searchResults = new ArrayList<>();
+    ObjectMapper map = new ObjectMapper();
+
+    // Create JTree
+    JsonNode tree = map.readTree(input);
+    JsonNode results = tree.get("items");
+
+    // Iterate through result array and make movie objects
+    for (int i = 0; i < results.size(); i++) {
+
+      String id = results.get(i).get("id").asText();
+      String image = results.get(i).get("image").asText();
+      String title = results.get(i).get("title").asText();
+      String rank = results.get(i).get("rank").asText();
+
+      // Add to movie object array
+      temp = new Movie(id, "Movie", image, title, "Rank " + rank + " out of top 250 movies");
+      searchResults.add(temp);
+
     }
 
     input.close();
@@ -162,7 +214,12 @@ public class Call {
     ObjectMapper map = new ObjectMapper();
     JsonNode tree = map.readTree(input);
     String rough = tree.get("plotShort").toString();
-    String polished = rough.substring(14, rough.indexOf("\\r"));
+    String polished = "";
+    if (rough.indexOf("\\r") == -1) {
+      polished = "";
+    } else {
+      polished = rough.substring(14, rough.indexOf("\\r"));
+    }
     return "<HTML>" + polished + "</HTML>";
   }
 
