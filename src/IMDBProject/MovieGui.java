@@ -15,6 +15,7 @@ import javax.swing.tree.TreeModel;
 
 public class MovieGui extends JFrame {
 
+
   private Movie movie;
   private ArrayList<String> actors;
   private JPanel displayPanel;
@@ -115,13 +116,15 @@ public class MovieGui extends JFrame {
           DefaultMutableTreeNode node = (DefaultMutableTreeNode) selectedNode;
           Object selectedObject = node.getUserObject();
           if (selectedObject instanceof String) {
+            try {
               new ActorGui((String) selectedObject);
+            } catch (IOException ex) {
+              throw new RuntimeException(ex);
+            }
           }
         }
       }
     });
-
-
     return new JScrollPane(tree);
   }
 
