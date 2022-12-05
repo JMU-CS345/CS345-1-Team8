@@ -50,7 +50,7 @@ public class iMDBGui extends JFrame {
    */
   private Component getDisplayPanel() {
     this.displayPanel = new JPanel();
-    displayPanel.setPreferredSize(new Dimension(450, 70));
+    displayPanel.setPreferredSize(new Dimension(450, 100));
     buildContents();
     return displayPanel;
   }
