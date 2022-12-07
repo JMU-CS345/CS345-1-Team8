@@ -4,6 +4,8 @@ import java.awt.*;
 import java.io.IOException;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * GUI for user input and navigation.
@@ -19,6 +21,8 @@ public class iMDBGui extends JFrame {
   private JPanel displayPanel;
   private JTextField entry;
   private JButton search;
+
+  private JButton random;
 
   /**
    * Constructor for main.
@@ -46,7 +50,7 @@ public class iMDBGui extends JFrame {
    */
   private Component getDisplayPanel() {
     this.displayPanel = new JPanel();
-    displayPanel.setPreferredSize(new Dimension(450, 70));
+    displayPanel.setPreferredSize(new Dimension(450, 100));
     buildContents();
     return displayPanel;
   }
@@ -76,6 +80,8 @@ public class iMDBGui extends JFrame {
     displayPanel.add(titlePanel);
     displayPanel.add(inputPanel);
     displayPanel.add(searchPanel);
+
+    createRandomButton();
   }
 
   /**
@@ -111,5 +117,27 @@ public class iMDBGui extends JFrame {
         // display array of stuff to new window
       }
     });
+  }
+  private void createRandomButton() {
+    this.random = new JButton("I'm feeling lucky!");
+    random.setFont(new Font("Comic Sans MS", Font.ITALIC, 12));
+
+    random.addActionListener(e -> {
+
+      try {
+        ArrayList<Movie> top250 = (ArrayList<Movie>) Call.generateRandom();
+
+        Random rand = new Random();
+        int randIndex = rand.nextInt(250);
+
+        new MovieGui(top250.get(randIndex));
+
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+
+    });
+
+    displayPanel.add(random);
   }
 }
