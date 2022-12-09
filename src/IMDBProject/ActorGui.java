@@ -13,11 +13,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Image;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,12 +33,17 @@ public class ActorGui extends JFrame {
    * @param name of the actor to display their image
    */
   public ActorGui(String name) throws IOException {
+    GraphicsEnvironment graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    GraphicsDevice device = graphics.getDefaultScreenDevice();
+
     this.main = this;
     this.name = name;
     buildGui();
     this.setVisible(true);
     this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     this.pack();
+
+    device.setFullScreenWindow(this);
   }
 
   /**

@@ -35,10 +35,15 @@ public class SearchResultsGui extends JFrame {
    */
   public SearchResultsGui(ArrayList<Movie> movies) {
     this.main = this;
+
+    setSize(1000, 1000);
+    setLocationRelativeTo(null);
+
     this.movies = movies;
     buildGui();
     this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     this.pack();
+    setVisible(true);
   }
 
   /**

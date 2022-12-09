@@ -29,6 +29,8 @@ public class iMDBGui extends JFrame {
    */
   public iMDBGui() {
     this.main = this;
+    main.setSize(new Dimension(450, 100));
+    main.setLocationRelativeTo(null);
 
     buildGui();
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);

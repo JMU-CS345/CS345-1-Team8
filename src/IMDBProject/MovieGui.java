@@ -22,12 +22,19 @@ public class MovieGui extends JFrame {
 
 
   public MovieGui(Movie movie) throws IOException {
+    GraphicsEnvironment graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    GraphicsDevice device = graphics.getDefaultScreenDevice();
+
     this.movie = movie;
     this.actors = Call.getActors(movie.getId());
     buildGui();
-    this.setVisible(true);
+    this.setSize(1000, 1000);
+    this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.pack();
+    this.setVisible(true);
+
+    device.setFullScreenWindow(this);
   }
 
   /**
