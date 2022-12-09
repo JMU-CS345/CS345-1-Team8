@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,28 +36,8 @@ public class Call {
    * @throws IOException if input is unreadable
    */
   public static List<Movie> makeAPICall(String submission) throws IOException {
-
-    //URL Format: https://imdb-api.com/en/API/SearchMovie/<key>/<movie title>
-    //Key:        k_mcx0w8kk
-
-    URL url = new URL("https://imdb-api.com/en/API/SearchMovie/k_mcx0w8kk/" + submission);
-
-    // Get URL connection
-    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-    conn.setRequestMethod("GET");
-    conn.connect();
-
-    //Check if connected successfully
-    int responseCode = conn.getResponseCode();
-
-    //Code 200 OK, anything else throw exception
-    if (responseCode != 200) {
-      throw new RuntimeException("HttpResponseCode: " + responseCode);
-    }
-
-    // Read the contents of the new URL
-    InputStream input = url.openStream();
-    return readMovieList(input);
+    String link = "https://imdb-api.com/en/API/SearchMovie/k_mcx0w8kk/" + submission;
+    return readMovieList(api(link));
   }
 
   /**
@@ -66,15 +47,14 @@ public class Call {
    * @return a List of the search results as movie objects
    * @throws IOException if input is unreadable
    */
-  public static List<Movie> readMovieList(InputStream input) throws IOException {
-
+  public static List<Movie> readMovieList(JsonNode input) throws IOException {
     // Set-up:
     Movie temp;
     List<Movie> searchResults = new ArrayList<>();
-    ObjectMapper map = new ObjectMapper();
+
 
     // Create JTree
-    JsonNode tree = map.readTree(input);
+    JsonNode tree = input;
     JsonNode results = tree.get("results");
 
     // Iterate through result array and make movie objects
@@ -90,8 +70,6 @@ public class Call {
       temp = new Movie(id, resultType, image, title, description);
       searchResults.add(temp);
     }
-
-    input.close();
     return searchResults;
   }
 
@@ -103,26 +81,8 @@ public class Call {
    * @throws IOException if the url messes up
    */
   public static ArrayList<String> getActors(String id) throws IOException{
-    URL url = new URL("https://imdb-api.com/en/API/FullCast/k_mcx0w8kk/" + id);
-    // Get URL connection
-    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-    conn.setRequestMethod("GET");
-    conn.connect();
-
-    //Check if connected successfully
-    int responseCode = conn.getResponseCode();
-
-    //Code 200 OK, anything else throw exception
-    if (responseCode != 200) {
-      throw new RuntimeException("HttpResponseCode: " + responseCode);
-    }
-
-    // Read the contents of the new URL
-    InputStream input = url.openStream();
-
-    // Create JTree
-    ObjectMapper map = new ObjectMapper();
-    JsonNode tree = map.readTree(input);
+    String link = "https://imdb-api.com/en/API/FullCast/k_mcx0w8kk/" + id;
+    JsonNode tree = api(link);
     JsonNode results = tree.get("actors");
     ArrayList<String> actors = new ArrayList<>();
     for (JsonNode result : results) {
@@ -141,26 +101,8 @@ public class Call {
    * @throws IOException if the url messes up
    */
   public static String getDescription(String id) throws IOException {
-    URL url = new URL("https://imdb-api.com/en/API/Wikipedia/k_mcx0w8kk/" + id);
-    // Get URL connection
-    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-    conn.setRequestMethod("GET");
-    conn.connect();
-
-    //Check if connected successfully
-    int responseCode = conn.getResponseCode();
-
-    //Code 200 OK, anything else throw exception
-    if (responseCode != 200) {
-      throw new RuntimeException("HttpResponseCode: " + responseCode);
-    }
-
-    // Read the contents of the new URL
-    InputStream input = url.openStream();
-
-    // Create JTree
-    ObjectMapper map = new ObjectMapper();
-    JsonNode tree = map.readTree(input);
+    String link = "https://imdb-api.com/en/API/Wikipedia/k_mcx0w8kk/" + id;
+    JsonNode tree = api(link);
     String rough = tree.get("plotShort").toString();
     System.out.println(rough);
     int rightBound = -1;
@@ -184,29 +126,12 @@ public class Call {
    * @throws IOException if something goes wrong for the api
    */
   public static String getActorImage(String name) throws IOException {
-    System.out.println(name);
-    URL url = new URL("https://imdb-api.com/en/API/SearchName/k_mcx0w8kk/" + name);
-    // Get URL connection
-    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-    conn.setRequestMethod("GET");
-    conn.connect();
-
-    //Check if connected successfully
-    int responseCode = conn.getResponseCode();
-
-    //Code 200 OK, anything else throw exception
-    if (responseCode != 200) {
-      throw new RuntimeException("HttpResponseCode: " + responseCode);
-    }
-
-    // Read the contents of the new URL
-    InputStream input = url.openStream();
-
-    // Create JTree
-    ObjectMapper map = new ObjectMapper();
-    JsonNode tree = map.readTree(input);
-    String link = tree.get("results").get(0).get("image").toString();
-    return link.substring(1, link.length() - 1);
+    String link = "https://imdb-api.com/en/API/SearchName/k_mcx0w8kk/" + name;
+    JsonNode tree = api(link);
+    String answer = tree.get("results").get(0).get("image").toString();
+    answer = answer.substring(1, answer.length() - 1);
+    System.out.println(answer);
+    return answer;
   }
 
   /**
@@ -216,7 +141,23 @@ public class Call {
    * @throws IOException if there is a problem searching using the api
    */
   public static ArrayList<String> getMovies(String name) throws IOException {
-    URL url = new URL("https://imdb-api.com/en/API/SearchName/k_mcx0w8kk/" + name);
+    String link = "https://imdb-api.com/en/API/SearchName/k_mcx0w8kk/" + name;
+    JsonNode tree = api(link);
+    JsonNode nodes = tree.get("results");
+    ArrayList<String> result = new ArrayList<>();
+    for (JsonNode node : nodes) {
+      String actorName = node.get("title").toString();
+      actorName = actorName.substring(1, actorName.length() - 1);
+      if (name.equals(actorName)) {
+        String desc = node.get("description").toString();
+        result.add(desc.substring(desc.indexOf(", ") + 1, desc.indexOf("(") - 1));
+      }
+    }
+    return result;
+  }
+
+  public static JsonNode api(String link) throws IOException {
+    URL url = new URL(link);
     // Get URL connection
     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
     conn.setRequestMethod("GET");
@@ -237,18 +178,7 @@ public class Call {
     // Create JTree
     ObjectMapper map = new ObjectMapper();
     JsonNode tree = map.readTree(input);
-    JsonNode nodes = tree.get("results");
-    ArrayList<Movie> movies = new ArrayList<>();
-    for (JsonNode node : nodes) {
-
-      String actorName = node.get("title").toString();
-      actorName = actorName.substring(1, actorName.length() - 1);
-      if (name.equals(actorName)) {
-        String desc = node.get("description").toString();
-        result.add(desc.substring(desc.indexOf(", ") + 1, desc.indexOf("(") - 1));
-      }
-    }
-    return result;
+    return tree;
   }
 
   public static List<Movie> generateRandom() throws IOException {
