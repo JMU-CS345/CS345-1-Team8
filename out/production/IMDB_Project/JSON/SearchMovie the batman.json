@@ -1,0 +1,182 @@
+{
+  "searchType": "Movie",
+  "expression": "the batman",
+  "results": [
+    {
+      "id": "tt1877830",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_Ratio0.6757_AL_.jpg",
+      "title": "The Batman",
+      "description": "2022 Robert Pattinson, Zoë Kravitz"
+    },
+    {
+      "id": "tt0103359",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BOTM3MTRkZjQtYjBkMy00YWE1LTkxOTQtNDQyNGY0YjYzNzAzXkEyXkFqcGdeQXVyOTgwMzk1MTA@._V1_Ratio0.6757_AL_.jpg",
+      "title": "Batman: The Animated Series",
+      "description": "1992–1995 TV Series Kevin Conroy, Loren Lester"
+    },
+    {
+      "id": "tt0398417",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BZDExMWQ5MDQtMWNjNy00M2EzLWE1M2EtYzFhNDVhM2Q5MDI1XkEyXkFqcGdeQXVyNTA4NzExMDg@._V1_Ratio0.6757_AL_.jpg",
+      "title": "The Batman",
+      "description": "2004–2008 TV Series Rino Romano, Alastair Duncan"
+    },
+    {
+      "id": "tt4116284",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_Ratio0.6757_AL_.jpg",
+      "title": "The Lego Batman Movie",
+      "description": "2017 Will Arnett, Michael Cera"
+    },
+    {
+      "id": "tt19850008",
+      "resultType": "Movie",
+      "image": "",
+      "title": "The Batman 2",
+      "description": "2025"
+    },
+    {
+      "id": "tt0060153",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BMmM1OGIzM2UtNThhZS00ZGNlLWI4NzEtZjlhOTNhNmYxZGQ0XkEyXkFqcGdeQXVyNTkxMzEwMzU@._V1_Ratio0.6757_AL_.jpg",
+      "title": "Batman",
+      "description": "1966 Adam West, Burt Ward"
+    },
+    {
+      "id": "tt0147746",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BZWJhNjA4YTAtODBlMS00NjIzLThhZWUtOGYxMGM3OTRmNDZmXkEyXkFqcGdeQXVyNjk1Njg5NTA@._V1_Ratio0.7568_AL_.jpg",
+      "title": "Batman Beyond",
+      "description": "1999–2001 TV Series Will Friedle, Kevin Conroy"
+    },
+    {
+      "id": "tt4853102",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BMTdjZTliODYtNWExMi00NjQ1LWIzN2MtN2Q5NTg5NTk3NzliL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_Ratio0.6757_AL_.jpg",
+      "title": "Batman: The Killing Joke",
+      "description": "2016 Kevin Conroy, Mark Hamill"
+    },
+    {
+      "id": "tt0106364",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BYTRiMWM3MGItNjAxZC00M2E3LThhODgtM2QwOGNmZGU4OWZhXkEyXkFqcGdeQXVyNjExODE1MDc@._V1_Ratio0.6757_AL_.jpg",
+      "title": "Batman: Mask of the Phantasm",
+      "description": "1993 Kevin Conroy, Dana Delany"
+    },
+    {
+      "id": "tt0118266",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BY2JkYjE4MWYtMGJlZC00OWVhLWJlMmUtNGQzYjM0ZDUxNGI2XkEyXkFqcGdeQXVyMjM5NDQzNTk@._V1_Ratio0.7297_AL_.jpg",
+      "title": "The New Batman Adventures",
+      "description": "1997–1999 TV Series Kevin Conroy, Tara Strong"
+    },
+    {
+      "id": "tt1213218",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BYzAyMzZjMDMtYTYyZS00NGJlLWI2ZmQtZTQ3ZGJmNjYwZWFiXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_Ratio0.7027_AL_.jpg",
+      "title": "Batman: The Brave and the Bold",
+      "description": "2008–2011 TV Series Diedrich Bader, John DiMaggio"
+    },
+    {
+      "id": "tt19064880",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BYTc5MTBiZjQtZGM3ZC00NzExLWE5YTktN2FjNTlhNjIzYWU4XkEyXkFqcGdeQXVyMTEyNzgwMDUw._V1_Ratio0.6757_AL_.jpg",
+      "title": "The Batman: Deleted Arkham Scene",
+      "description": "2022 Video Barry Keoghan, Robert Pattinson"
+    },
+    {
+      "id": "tt21197740",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BYmMwZGRlNDYtZDdmYy00MzBjLTg4NmItNTU5NzFiMDRkMDc4XkEyXkFqcGdeQXVyMTU0OTM5ODc1._V1_Ratio0.6757_AL_.jpg",
+      "title": "Batman and Superman: Battle of the Super Sons",
+      "description": "2022 Video Jack Dylan Grazer, Jack Griffo"
+    },
+    {
+      "id": "tt1569923",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BNmY4ZDZjY2UtOWFiYy00MjhjLThmMjctOTQ2NjYxZGRjYmNlL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_Ratio0.7297_AL_.jpg",
+      "title": "Batman: Under the Red Hood",
+      "description": "2010 Video Bruce Greenwood, Jensen Ackles"
+    },
+    {
+      "id": "tt0096895",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BZDNjOGNhN2UtNmNhMC00YjU4LWEzMmUtNzRkM2RjN2RiMjc5XkEyXkFqcGdeQXVyMTU0OTM5ODc1._V1_Ratio0.6757_AL_.jpg",
+      "title": "Batman",
+      "description": "1989 Michael Keaton, Jack Nicholson"
+    },
+    {
+      "id": "tt0059968",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BMTkzNDY5NTg5MF5BMl5BanBnXkFtZTgwNzI4NzM1MjE@._V1_Ratio0.7838_AL_.jpg",
+      "title": "Batman",
+      "description": "1966–1968 TV Series Adam West, Burt Ward"
+    },
+    {
+      "id": "tt21445686",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BNjNmNjJhZTUtMGM2Zi00YTBiLThjOWItYmE0NjRjNzgxNzMwXkEyXkFqcGdeQXVyMTY5Nzc4MDY@._V1_Ratio0.7568_AL_.jpg",
+      "title": "Batman: The Long Halloween",
+      "description": "2021 Jensen Ackles, Laila Berzins"
+    },
+    {
+      "id": "tt0372784",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_Ratio0.6757_AL_.jpg",
+      "title": "Batman Begins",
+      "description": "2005 Christian Bale, Michael Caine"
+    },
+    {
+      "id": "tt14324650",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDBkYTJjZjgtNDlhNi00ZTE1LWI2NmYtMDBjMDUzOWMwNzQwXkEyXkFqcGdeQXVyMTEyNzgwMDUw._V1_Ratio0.6757_AL_.jpg",
+      "title": "Batman: The Long Halloween, Part One",
+      "description": "2021 Jensen Ackles, Josh Duhamel"
+    },
+    {
+      "id": "tt12794046",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BYTE2YjI4NTAtMDZiOC00NWQyLTk5ZjctNzQ0NjE5ZTE4NjhkXkEyXkFqcGdeQXVyMTEyNzgwMDUw._V1_Ratio0.6757_AL_.jpg",
+      "title": "Batman: Death in the Family",
+      "description": "2020 Video Bruce Greenwood, Vincent Martella"
+    },
+    {
+      "id": "tt0346578",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BN2IwYTVlZGQtOTRhNy00MDI5LThmMTUtYWI1MGUwMGFkYzI1XkEyXkFqcGdeQXVyNzQzNzQxNzI@._V1_Ratio0.7027_AL_.jpg",
+      "title": "Batman: Mystery of the Batwoman",
+      "description": "2003 Video Kevin Conroy, Kimberly Brooks"
+    },
+    {
+      "id": "tt15179396",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BYTIyM2ZiMmMtN2NiOS00MDkxLTljNDktMTI4ZTUwYTYwNWZkXkEyXkFqcGdeQXVyNjYwMzM1MjM@._V1_Ratio0.8108_AL_.jpg",
+      "title": "Batman: The Audio Adventures",
+      "description": "2021– Podcast Series Jeffrey Wright, Chris Parnell"
+    },
+    {
+      "id": "tt0103776",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BOGZmYzVkMmItM2NiOS00MDI3LWI4ZWQtMTg0YWZkODRkMmViXkEyXkFqcGdeQXVyODY0NzcxNw@@._V1_Ratio0.6757_AL_.jpg",
+      "title": "Batman Returns",
+      "description": "1992 Michael Keaton, Danny DeVito"
+    },
+    {
+      "id": "tt0233298",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BNmRmODEwNzctYzU1MS00ZDQ1LWI2NWMtZWFkNTQwNDg1ZDFiXkEyXkFqcGdeQXVyNTI4MjkwNjA@._V1_Ratio0.6757_AL_.jpg",
+      "title": "Batman Beyond: Return of the Joker",
+      "description": "2000 Video Will Friedle, Mark Hamill"
+    },
+    {
+      "id": "tt2329077",
+      "resultType": "Movie",
+      "image": "https://m.media-amazon.com/images/M/MV5BMjY2ZmMyZTMtMDBiYi00MTZlLWFmZjAtYzE2NWE4OTBmYTJiXkEyXkFqcGdeQXVyMTI1MzYzODMy._V1_Ratio0.6757_AL_.jpg",
+      "title": "Beware the Batman",
+      "description": "2013–2014 TV Series Anthony Ruivivar, Sumalee Montano"
+    }
+  ],
+  "errorMessage": ""
+}
