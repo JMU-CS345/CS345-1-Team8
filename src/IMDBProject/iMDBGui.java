@@ -3,6 +3,7 @@ package IMDBProject;
 import java.awt.*;
 import java.io.IOException;
 import javax.swing.*;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -23,6 +24,7 @@ public class iMDBGui extends JFrame {
   private JButton search;
 
   private JButton random;
+  private JButton leo;
 
   /**
    * Constructor for main.
@@ -84,6 +86,7 @@ public class iMDBGui extends JFrame {
     displayPanel.add(searchPanel);
 
     createRandomButton();
+    createLeoButton();
   }
 
   /**
@@ -137,9 +140,21 @@ public class iMDBGui extends JFrame {
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
-
     });
 
     displayPanel.add(random);
+  }
+
+  private void createLeoButton() {
+    this.leo = new JButton("Leo Dating Game");
+    leo.setFont(new Font("Comic Sans MS", Font.ITALIC, 12));
+    leo.addActionListener(e -> {
+      try {
+        new Leo();
+      } catch (MalformedURLException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+    displayPanel.add(leo);
   }
 }
